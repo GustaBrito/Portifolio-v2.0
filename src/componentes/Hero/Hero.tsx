@@ -65,12 +65,21 @@ const Hero = () => {
     alert(t('hero.downloadAlert'));
   };
 
-  const navegarProjetos = () => {
-    const elemento = document.getElementById('projetos');
-    if (elemento) {
-      elemento.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+const navegarProjetos = () => {
+  const elemento = document.getElementById('projetos');
+  if (elemento) {
+    const header = document.querySelector('.cabecalho') as HTMLElement;
+    const headerHeight = header ? header.offsetHeight : 80;
+    
+    const elementPosition = elemento.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  }
+};
 
   return (
     <section id="inicio" className="hero">
