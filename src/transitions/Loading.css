@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 9999;
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  gap: 25px;
+  padding: 20px;
+}
+
+.logo-crow {
+  margin-bottom: 5px;
+  z-index: 2;
+  position: relative;
+}
+
+.loading-text {
+  text-align: center;
+  z-index: 2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.word {
+  color: #ffffff !important;
+  font-size: 1.5em;
+  line-height: 1.2;
+  margin: 0 auto;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  font-family: 'Source Code Pro', monospace;
+  letter-spacing: 3px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.word span {
+  display: inline-block;
+  color: #ffffff !important;
+  transform: translateX(100%) scale(0.9);
+  transition: transform 600ms ease-out;
+}
+
+.word .done {
+  color: #ffffff !important;
+  transform: translateX(0) scale(1);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Container do progresso */
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.loading-percent {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+  color: #ffffff;
+  font-family: 'Source Code Pro', monospace;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  letter-spacing: 1px;
+}
+
+/* Barra de carregamento horizontal */
+.loading-bar-container {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.loading-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #6F4E37, #8B5A2B, #A67B5B);
+  border-radius: 10px;
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 15px rgba(111, 78, 55, 0.7);
+  overflow: hidden;
+}
+
+/* Brilho que percorre junto com a barra */
+.loading-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-30px);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.loading-footer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  font-family: 'Share Tech Mono', monospace;
+  z-index: 5;
+}
+
+/* Efeito de fundo sutil */
+.loading-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #0a0a0a, #111111);
+  z-index: 1;
+}
+
+/* Animação do logo */
+.coffee-logo-animated {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0) rotate(0.5deg); 
+  }
+  50% { 
+    transform: translateY(-8px) rotate(-0.5deg); 
+  }
+}
+
+/* Animação do líquido */
+.coffee-liquid {
+  animation: liquidWave 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes liquidWave {
+  0%, 100% { 
+    clip-path: ellipse(50% 60% at 50% 50%); 
+  }
+  50% { 
+    clip-path: ellipse(55% 65% at 50% 50%); 
+  }
+}
+
+/* Animação do vapor */
+.steam {
+  animation: steamRise 3s ease-out infinite;
+}
+
+.steam-delay-1 {
+  animation: steamRise 4s ease-out 0.8s infinite;
+}
+
+.steam-delay-2 {
+  animation: steamRise 4s ease-out 1.6s infinite;
+}
+
+@keyframes steamRise {
+  0% { 
+    opacity: 0; 
+    transform: translateY(0) scale(0.9); 
+  }
+  30% { 
+    opacity: 0.7; 
+  } 
+  100% { 
+    opacity: 0; 
+    transform: translateY(-70px) scale(1.5); 
+  } 
+}
+
+/* Efeito de pulso sutil no texto */
+@keyframes textPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.word, .loading-percent {
+  animation: textPulse 2s ease-in-out infinite;
+}
+
+/* Responsividade */
+@media (max-height: 600px) {
+  .loading-content {
+    gap: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .logo-crow {
+    transform: scale(0.8);
+  }
+  
+  .word {
+    font-size: 1.3em;
+  }
+  
+  .loading-percent {
+    font-size: 1.5rem;
+  }
+  
+  .loading-bar-container {
+    height: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-content {
+    gap: 20px;
+  }
+  
+  .word {
+    font-size: 1.2em;
+    letter-spacing: 2px;
+  }
+  
+  .loading-percent {
+    font-size: 1.4rem;
+  }
+  
+  .progress-container {
+    gap: 10px;
+  }
+  
+  .loading-bar-container {
+    height: 4px;
+  }
+}

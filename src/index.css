@@ -1,0 +1,402 @@
+/* ===== RESET E BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Cores principais - Tema Claro */
+  --cor-primaria: #2563eb;
+  --cor-primaria-escura: #1d4ed8;
+  --cor-secundaria: #64748b;
+  --cor-texto-principal: #1e293b;
+  --cor-texto-secundario: #475569;
+  --cor-fundo: #ffffff;
+  --cor-fundo-secao: #f8fafc;
+  --cor-borda: #e2e8f0;
+  --cor-destaque: #0ea5e9;
+  
+  /* Gradientes */
+  --gradiente-principal: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
+  --gradiente-fundo: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  
+  /* Sombras */
+  --sombra-suave: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --sombra-media: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --sombra-forte: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --sombra-colorida: 0 4px 15px rgba(37, 99, 235, 0.2);
+  
+  /* Transições */
+  --transicao-padrao: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transicao-rapida: all 0.2s ease;
+  
+  /* Espaçamentos */
+  --espacamento-xs: 0.5rem;
+  --espacamento-sm: 1rem;
+  --espacamento-md: 1.5rem;
+  --espacamento-lg: 2rem;
+  --espacamento-xl: 3rem;
+  --espacamento-2xl: 4rem;
+  
+  /* Tipografia */
+  --fonte-principal: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --fonte-codigo: 'Fira Code', 'Monaco', 'Cascadia Code', monospace;
+  
+  /* Bordas */
+  --borda-raio: 0.5rem;
+  --borda-raio-lg: 1rem;
+}
+
+/* Tema Escuro */
+[data-theme="dark"] {
+  --cor-primaria: #3b82f6;
+  --cor-primaria-escura: #2563eb;
+  --cor-secundaria: #64748b;
+  --cor-texto-principal: #f1f5f9;
+  --cor-texto-secundario: #cbd5e1;
+  --cor-fundo: #111827;
+  --cor-fundo-secao: #1f2937;
+  --cor-borda: #374151;
+  --cor-destaque: #06b6d4;
+  
+  /* Gradientes para tema escuro */
+  --gradiente-principal: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+  --gradiente-fundo: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  
+  /* Sombras para tema escuro */
+  --sombra-suave: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --sombra-media: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --sombra-forte: 0 10px 25px rgba(0, 0, 0, 0.4);
+  --sombra-colorida: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+body {
+  font-family: var(--fonte-principal);
+  line-height: 1.6;
+  color: var(--cor-texto-principal);
+  background-color: var(--cor-fundo);
+  scroll-behavior: smooth;
+}
+
+/* ===== UTILITÁRIOS GLOBAIS ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--espacamento-sm);
+}
+
+.secao {
+  padding: var(--espacamento-2xl) 0;
+}
+
+.secao-alternada {
+  background: var(--cor-fundo-secao);
+}
+
+.texto-centro {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-coluna {
+  flex-direction: column;
+}
+
+.flex-centro {
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-entre {
+  justify-content: space-between;
+}
+
+.grade {
+  display: grid;
+}
+
+.oculto {
+  display: none;
+}
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulsar {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes deslizar-entrada {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes deslizar-saida {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+
+@keyframes escalar-entrada {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes rotacionar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes brilhar {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animacao-aparecer {
+  animation: aparecer 0.6s ease-out;
+}
+
+.animacao-flutuar {
+  animation: flutuar 3s ease-in-out infinite;
+}
+
+.animacao-pulsar {
+  animation: pulsar 2s ease-in-out infinite;
+}
+
+.animacao-deslizar-entrada {
+  animation: deslizar-entrada 0.5s ease-out;
+}
+
+.animacao-escalar {
+  animation: escalar-entrada 0.4s ease-out;
+}
+
+.animacao-rotacionar {
+  animation: rotacionar 10s linear infinite;
+}
+
+.animacao-brilhar {
+  animation: brilhar 2s ease-in-out infinite;
+}
+
+/* ===== EFEITOS INTERATIVOS ===== */
+.hover-elevacao {
+  transition: var(--transicao-padrao);
+}
+
+.hover-elevacao:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-forte);
+}
+
+.hover-escala {
+  transition: var(--transicao-padrao);
+}
+
+.hover-escala:hover {
+  transform: scale(1.05);
+}
+
+.hover-rotacao {
+  transition: var(--transicao-padrao);
+}
+
+.hover-rotacao:hover {
+  transform: rotate(5deg);
+}
+
+.hover-brilho {
+  transition: var(--transicao-padrao);
+}
+
+.hover-brilho:hover {
+  filter: brightness(1.1);
+}
+
+/* ===== ANIMAÇÕES DE ENTRADA VIEWPORT ===== */
+.observar-entrada {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: var(--transicao-padrao);
+}
+
+.observar-entrada.visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.observar-esquerda {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: var(--transicao-padrao);
+}
+
+.observar-esquerda.visivel {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.observar-direita {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: var(--transicao-padrao);
+}
+
+.observar-direita.visivel {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.observar-escala {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: var(--transicao-padrao);
+}
+
+.observar-escala.visivel {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+  :root {
+    --espacamento-xl: 2rem;
+    --espacamento-2xl: 3rem;
+  }
+  
+  .container {
+    padding: 0 var(--espacamento-sm);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== SCROLLBAR PERSONALIZADA ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cor-fundo-secao);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cor-primaria);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cor-primaria-escura);
+}
+
+/* ===== CORREÇÕES TEMA ESCURO ===== */
+/* Backgrounds brancos que precisam ser corrigidos no tema escuro */
+[data-theme="dark"] .habilidade-card-compacto,
+[data-theme="dark"] .ferramenta-tag,
+[data-theme="dark"] .especializacao-card,
+[data-theme="dark"] .experiencia-card,
+[data-theme="dark"] .educacao-card,
+[data-theme="dark"] .estatistica-item,
+[data-theme="dark"] .projeto-card,
+[data-theme="dark"] .filtros-lista,
+[data-theme="dark"] .info-item,
+[data-theme="dark"] .redes-sociais-secao,
+[data-theme="dark"] .formulario-container,
+[data-theme="dark"] .estatistica,
+[data-theme="dark"] .botao-secundario,
+[data-theme="dark"] .rede-social,
+[data-theme="dark"] .elemento-codigo,
+[data-theme="dark"] .botao-visualizar,
+[data-theme="dark"] .botao-acao.secundario,
+[data-theme="dark"] .modal-conteudo,
+[data-theme="dark"] .placeholder-trabalho {
+  background: var(--cor-fundo) !important;
+  color: var(--cor-texto-principal) !important;
+}
+
+/* Correção para campos de formulário */
+[data-theme="dark"] .campo-input,
+[data-theme="dark"] .campo-textarea,
+[data-theme="dark"] .campo-select {
+  background: var(--cor-fundo) !important;
+  color: var(--cor-texto-principal) !important;
+  border-color: var(--cor-borda) !important;
+}
+
+/* Correção para elementos com cores específicas no hover */
+[data-theme="dark"] .experiencia-card::before {
+  border-color: transparent !important;
+}
+
+[data-theme="dark"] .timeline-item:nth-child(even) .experiencia-card::before {
+  border-right-color: var(--cor-fundo) !important;
+}
+
+[data-theme="dark"] .timeline-item:nth-child(odd) .experiencia-card::before {
+  border-left-color: var(--cor-fundo) !important;
+}
+
+/* Correção do timeline */
+[data-theme="dark"] .timeline-marcador {
+  background: var(--cor-fundo) !important;
+}

@@ -1,0 +1,766 @@
+  .timeline-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .timeline-linha {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--gradiente-principal);
+    transform: translateX(-50%);
+    border-radius: 2px;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: var(--espacamento-md);
+    cursor: pointer;
+  }
+
+  /* Item PAR (Lado Direito) */
+  .timeline-item:nth-child(even) .timeline-conteudo {
+    margin-left: 50%;
+    padding-left: var(--espacamento-xl);
+    width: 65%; /* Definindo largura explícita para o layout de dois lados */
+    text-align: left;
+  }
+
+  /* CORREÇÃO CRÍTICA 1: Item ÍMPAR (Lado Esquerdo) */
+  /* O margin-right: 63% e margin-left: -10% causavam o overflow */
+  .timeline-item:nth-child(odd) .timeline-conteudo {
+    margin-left: -15%; /* Garante que não vaze para a esquerda */
+    margin-right: 50%; /* Garante que ocupe a metade esquerda */
+    padding-right: var(--espacamento-xl); /* Usando XL para dar mais espaço */
+    text-align: left; /* Alinhamento à direita para a linha */
+    width: 65%; /* Definindo largura explícita para o layout de dois lados */
+  }
+
+  .timeline-marcador {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border: 4px solid var(--cor-primaria);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: var(--transicao-padrao);
+    box-shadow: var(--sombra-suave);
+  }
+
+  .timeline-item.ativa .timeline-marcador {
+    background: var(--cor-primaria);
+    transform: translateX(-50%) scale(1.2);
+    box-shadow: var(--sombra-colorida);
+  }
+
+  .marcador-icone {
+    font-size: 1.5rem;
+    transition: var(--transicao-padrao);
+  }
+
+  .timeline-item.ativa .marcador-icone {
+    filter: brightness(0) invert(1);
+  }
+
+  .timeline-conteudo {
+    padding-top: var(--espacamento-xl);
+  }
+
+  /* CORREÇÃO CRÍTICA 2: Ajustando a largura do Card */
+  /* O 120% causava o overflow em telas menores */
+  .experiencia-card {
+    width: 100%; 
+    min-width: 100%;
+    background: white;
+    padding: var(--espacamento-md);
+    border-radius: var(--borda-raio-lg);
+    box-shadow: var(--sombra-suave);
+    border: 1px solid var(--cor-borda);
+    transition: var(--transicao-padrao);
+    position: relative;
+  }
+
+  .timeline-item.ativa .experiencia-card {
+    transform: scale(1.02);
+    box-shadow: var(--sombra-colorida);
+  }
+
+  .experiencia-card::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    width: 0;
+    height: 0;
+    border: 15px solid transparent;
+  }
+
+  /* Seta PAR (Lado Direito) */
+  .timeline-item:nth-child(even) .experiencia-card::before {
+    left: -30px;
+    border-right-color: white;
+  }
+
+  /* Seta ÍMPAR (Lado Esquerdo) */
+  .timeline-item:nth-child(odd) .experiencia-card::before {
+    right: -30px;
+    border-left-color: white;
+  }
+
+  .card-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--espacamento-md);
+    gap: var(--espacamento-md);
+  }
+
+  .cargo-titulo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cor-texto-principal);
+    margin-bottom: var(--espacamento-xs);
+  }
+
+  .empresa-info {
+    display: flex;
+    align-items: center;
+    gap: var(--espacamento-sm);
+    flex-wrap: wrap;
+  }
+
+  .empresa-nome {
+    font-weight: 600;
+    color: var(--cor-primaria);
+  }
+
+  .tipo-trabalho {
+    background: var(--cor-fundo-secao);
+    color: var(--cor-texto-secundario);
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .periodo-badge {
+    background: var(--gradiente-principal);
+    color: white;
+    padding: var(--espacamento-xs) var(--espacamento-xs);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .experiencia-descricao {
+    color: var(--cor-texto-secundario);
+    line-height: 1.6;
+    margin-bottom: var(--espacamento-md);
+    font-size: 1.05rem;
+  }
+
+  .conquistas-secao {
+    margin-bottom: var(--espacamento-sm);
+  }
+
+  .conquistas-titulo, .tecnologias-titulo {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cor-texto-principal);
+    margin-bottom: 2px; 
+  }
+
+  .conquistas-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .conquista-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--espacamento-sm);
+    margin-bottom: 2px;
+    color: var(--cor-texto-secundario);
+    line-height: 1.5;
+  }
+
+  .conquista-icone {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    margin-top: 2px;
+  }
+
+  .tecnologias-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacamento-xs);
+  }
+
+  .tecnologia-tag {
+    background: var(--cor-fundo-secao);
+    color: var(--cor-primaria);
+    padding: var(--espacamento-xs) var(--espacamento-sm);
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid var(--cor-borda);
+    transition: var(--transicao-padrao);
+  }
+
+  .tecnologia-tag:hover {
+    background: var(--cor-primaria);
+    color: white;
+    transform: scale(1.05);
+  }
+
+  /* ===== EDUCAÇÃO ===== */
+  .categoria-titulo {
+    margin-bottom: var(--espacamento-sm);
+  }
+
+  .educacao-secao {
+    margin-top: var(--espacamento-2xl);
+    padding-top: var(--espacamento-2xl);
+    border-top: 2px solid var(--cor-borda);
+  }
+
+  .educacao-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--espacamento-lg);
+  }
+
+  .educacao-card {
+    background: white;
+    padding: var(--espacamento-md);
+    padding-top: 70px;
+    border-radius: var(--borda-raio-lg);
+    box-shadow: var(--sombra-suave);
+    border: 1px solid var(--cor-borda);
+    transition: var(--transicao-padrao);
+    position: relative;
+    display: flex;
+    gap: var(--espacamento-md);
+  }
+
+  .educacao-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-media);
+  }
+
+  .educacao-icone {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: var(--cor-fundo-secao);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .educacao-conteudo {
+    flex: 1;
+  }
+
+  .educacao-titulo {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--cor-texto-principal);
+    margin-bottom: var(--espacamento-xs);
+  }
+
+  .educacao-instituicao {
+    font-weight: 500;
+    color: var(--cor-primaria);
+    margin-bottom: var(--espacamento-xs);
+  }
+
+  .educacao-periodo {
+    font-size: 0.9rem;
+    color: var(--cor-texto-secundario);
+    margin-bottom: var(--espacamento-sm);
+  }
+
+  .educacao-descricao {
+    color: var(--cor-texto-secundario);
+    line-height: 1.5;
+    font-size: 0.95rem;
+  }
+
+  .tipo-badge {
+    position: absolute;
+    top: var(--espacamento-sm);
+    right: var(--espacamento-sm);
+    padding: var(--espacamento-xs) var(--espacamento-sm);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .tipo-badge.graduacao {
+    background: #10b981;
+    color: white;
+  }
+
+  .tipo-badge.certificacao {
+    background: #f59e0b;
+    color: white;
+  }
+
+  .tipo-badge.curso {
+    background: #8b5cf6;
+    color: white;
+  }
+
+  /* ===== ESTATÍSTICAS ===== */
+  .estatisticas-carreira {
+    margin-top: var(--espacamento-2xl);
+    padding-top: var(--espacamento-2xl);
+    border-top: 2px solid var(--cor-borda);
+  }
+
+  .estatisticas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--espacamento-lg);
+  }
+
+  .estatistica-item {
+    background: white;
+    padding: var(--espacamento-xl);
+    border-radius: var(--borda-raio-lg);
+    text-align: center;
+    box-shadow: var(--sombra-suave);
+    border: 1px solid var(--cor-borda);
+    transition: var(--transicao-padrao);
+  }
+
+  .estatistica-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-media);
+  }
+
+  .estatistica-numero {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: var(--gradiente-principal);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: var(--espacamento-xs);
+  }
+
+  .estatistica-label {
+    font-weight: 600;
+    color: var(--cor-texto-secundario);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+  }
+
+  /* ===== RESPONSIVIDADE ===== */
+  @media (max-width: 1200px) {
+
+    .timeline-container {
+      max-width: 95%; 
+      margin: 0 auto;
+      /* padding: 0 var(--espacamento-md); */
+    }
+    
+    /* Garantindo que o layout de dois lados funcione corretamente */
+    .timeline-item:nth-child(even) .timeline-conteudo {
+      width: 50%;
+      margin-left: 50%;
+      padding-left: var(--espacamento-xl);
+    }
+    .timeline-item:nth-child(odd) .timeline-conteudo {
+      width: 50%;
+      margin-right: 50%;
+      margin-left: 0;
+      padding-right: var(--espacamento-xl);
+    }
+
+    .educacao-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--espacamento-lg);
+    }
+
+    .estatisticas-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--espacamento-lg);
+    }
+  }
+
+  @media (max-width: 1070px) {
+      /* Força o layout a usar a largura máxima para o container */
+      .timeline-container {
+          max-width: 100%;
+          padding: 0 var(--espacamento-sm);
+      }
+      
+      /* Corrige o item ímpar para que ele não vaze */
+      .timeline-item:nth-child(odd) .timeline-conteudo {
+          /* Garante que o item ímpar não saia do limite esquerdo */
+          margin-left: auto; /* Deixa o navegador calcular */
+          margin-right: 50%; 
+          width: 50%; 
+          /* O card deve se alinhar à direita para encostar na linha */
+          text-align: left;
+      }
+
+      /* Corrige o item par para que ele não vaze */
+      .timeline-item:nth-child(even) .timeline-conteudo {
+          /* Garante que o item par não vaze para a direita */
+          margin-left: 50%; 
+          margin-right: auto;
+          width: 50%; 
+      }
+      
+      /* Ajuste para que o card interno não cause overflow com margens/padding */
+      .experiencia-card {
+          max-width: 100%;
+          box-sizing: border-box; /* Garante que padding não adicione largura */
+      }
+  }
+
+  @media (max-width: 1024px) {
+    .educacao-grid {
+      grid-template-columns: 1fr;
+      gap: var(--espacamento-md);
+    }
+    
+    .estatisticas-grid {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+    
+  }
+
+  @media (max-width: 992px) {
+    /* CORREÇÃO CRÍTICA 3: Transição para Coluna Única */
+    .timeline-container {
+      padding: 0 var(--espacamento-sm);
+    }
+    
+    /* Linha e Marcador no lado esquerdo */
+    .timeline-linha {
+      left: 30px; /* Ajustado para 30px para ter mais espaço que 40px */
+    }
+    
+    .timeline-marcador {
+      left: 25px;
+      width: 45px;
+      height: 45px;
+    }
+    
+    /* Conteúdo em coluna única, alinhado à esquerda da linha */
+    .timeline-item:nth-child(even) .timeline-conteudo,
+    .timeline-item:nth-child(odd) .timeline-conteudo {
+      margin-left: 60px; /* Distância da linha (30px) + espaço */
+      margin-right: 0;
+      padding-left: var(--espacamento-md);
+      padding-right: 0;
+      width: calc(100% - 60px); /* Usa a largura total menos a margem */
+      text-align: left; /* Garante que todo o texto esteja alinhado */
+    }
+    
+    .experiencia-card {
+      width: 100%;
+      min-width: auto;
+      margin-left: 0;
+      padding: var(--espacamento-md);
+    }
+    
+    /* Remove as setas no modo coluna única */
+    .experiencia-card::before {
+      display: none;
+    }
+    
+    .card-cabecalho {
+      align-items: flex-start;
+      gap: var(--espacamento-sm);
+    }
+    
+    .empresa-info {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--espacamento-xs);
+    }
+    
+    .periodo-badge {
+      align-self: flex-start;
+    }
+    
+    .cargo-titulo {
+      font-size: 1.2rem;
+    }
+    
+    .experiencia-descricao {
+      font-size: 0.95rem;
+    }
+    
+    .tecnologias-lista {
+      gap: var(--espacamento-xs);
+    }
+    
+    .tecnologia-tag {
+      font-size: 0.75rem;
+      padding: 4px 8px;
+    }
+    
+    /* Educação section */
+    .educacao-grid {
+      grid-template-columns: 1fr;
+      gap: var(--espacamento-md);
+    }
+    
+    .educacao-card {
+      padding: var(--espacamento-md);
+      padding-top: 60px;
+    }
+    
+    .tipo-badge {
+      right: var(--espacamento-sm);
+      left: auto;
+    }
+    
+    /* Estatísticas */
+    .estatisticas-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--espacamento-md);
+    }
+    
+    .estatistica-item {
+      padding: var(--espacamento-lg);
+    }
+    
+    .estatistica-numero {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .timeline-container {
+      padding: 0 var(--container-padding);
+    }
+    
+    .timeline-linha {
+      left: 30px;
+    }
+    .experiencia-card::before {
+    display: none;
+  }
+    .timeline-marcador {
+      left: 30px;
+      width: 50px;
+      height: 50px;
+    }
+    
+    .marcador-icone {
+      font-size: 1.3rem;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-conteudo,
+    .timeline-item:nth-child(odd) .timeline-conteudo {
+      margin-left: 50px;
+      margin-right: 0;
+      padding-left: var(--espacamento-md);
+      padding-right: 0;
+      text-align: left;
+    }
+    
+    .timeline-item:nth-child(even) .experiencia-card::before,
+    .timeline-item:nth-child(odd) .experiencia-card::before {
+      left: -15px;
+      right: auto;
+      border-left-color: transparent;
+      border-right-color: white;
+    }
+    
+    .card-cabecalho {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--espacamento-sm);
+    }
+    
+    .empresa-info {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--espacamento-xs);
+    }
+    
+    .educacao-card {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--espacamento-sm);
+    }
+    
+    .educacao-icone {
+      align-self: center;
+    }
+    
+    .estatisticas-grid {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+  }
+
+  @media (max-width: 576px) {
+    .timeline-container {
+      padding: 0 var(--container-padding);
+    }
+    
+    .timeline-linha {
+      left: 25px;
+    }
+    
+    .timeline-marcador {
+      left: 25px;
+      width: 45px;
+      height: 45px;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-conteudo,
+    .timeline-item:nth-child(odd) .timeline-conteudo {
+      margin-left: 60px;
+      padding-left: var(--espacamento-sm);
+    }
+    
+    .experiencia-card {
+      padding: var(--espacamento-md);
+      max-width: none;
+    }
+    
+    .cargo-titulo {
+      font-size: 1.2rem;
+    }
+    
+    .experiencia-detalhes {
+      grid-template-columns: 1fr;
+      gap: var(--espacamento-sm);
+    }
+    
+    .tecnologia-tag,
+    .tipo-trabalho,
+    .periodo-badge {
+      font-size: 0.75rem;
+      padding: 4px 8px;
+    }
+    
+    .educacao-card {
+      padding: var(--espacamento-md);
+      flex-direction: row; 
+      text-align: left; 
+      gap: var(--espacamento-md); 
+    }
+    
+    .educacao-icone {
+      font-size: 2rem;
+      width: 50px;
+      height: 50px;
+      margin-top: 0;
+    }
+    
+    .educacao-titulo {
+      font-size: 1.1rem;
+      padding-right: 100px;
+    }
+
+    .tipo-badge{
+      position: absolute;
+      top: var(--espacamento-sm);
+      right: var(--espacamento-sm);
+      padding: 4px 8px; 
+      text-transform: uppercase;
+      margin-bottom: 0; 
+  }
+
+  }
+
+  @media (max-width: 480px) {
+
+    .timeline-linha {
+      left: 20px;
+    }
+    
+    .timeline-marcador {
+      left: 20px;
+      width: 40px;
+      height: 40px;
+    }
+    
+    .marcador-icone {
+      font-size: 1.1rem;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-conteudo,
+    .timeline-item:nth-child(odd) .timeline-conteudo {
+      margin-left: 20px;
+      width: 95%;
+    }
+    
+    .cargo-titulo {
+      font-size: 1.1rem;
+    }
+    
+    .experiencia-descricao {
+      font-size: 0.95rem;
+    }
+    
+    .estatistica-numero {
+      font-size: 2rem;
+    }
+    
+    .estatistica-label {
+      font-size: 0.8rem;
+    }
+
+    .educacao-card{
+        padding: var(--espacamento-xs);
+        padding-top: var(--espacamento-sm);
+        padding-bottom: var(--espacamento-sm);
+        flex-direction: row;
+        text-align: left;
+        gap: var(--espacamento-md);
+    }
+  }
+
+  @media (max-width: 320px) {
+    .experiencia-card {
+      margin-left: 12px;
+      padding: 12px;
+    }
+
+    .timeline-linha {
+      left: 8px;
+    }
+
+    .timeline-marcador {
+      width: 10px;
+      height: 10px;
+      left: 3px;
+    }
+
+    .cargo-titulo {
+      font-size: 1rem;
+    }
+
+    .experiencia-detalhes span {
+      font-size: 0.85rem;
+    }
+
+    .experiencia-descricao {
+      font-size: 0.85rem;
+    }
+  }
