@@ -29,23 +29,23 @@ const Cabecalho = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrollAnterior]);
 
-const navegarPara = (id: string) => {
-  const elemento = document.getElementById(id);
-  if (elemento) {
-    const header = document.querySelector('.cabecalho') as HTMLElement;
-    const headerHeight = header ? header.offsetHeight : 80;
-    
-    const elementPosition = elemento.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+  const navegarPara = (id: string) => {
+    const elemento = document.getElementById(id);
+    if (elemento) {
+      const header = document.querySelector('.cabecalho') as HTMLElement;
+      const headerHeight = header ? header.offsetHeight : 80;
+      
+      const elementPosition = elemento.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
 
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
-    });
-    
-    setMenuAberto(false);
-  }
-};
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      
+      setMenuAberto(false);
+    }
+  };
 
   return (
     <header className={`cabecalho ${cabecalhoVisivel ? 'visivel' : 'oculto'}`}>
@@ -66,6 +66,7 @@ const navegarPara = (id: string) => {
           </nav>
           
           <div className="acoes-cabecalho">
+            {/* Botão Idioma - MOSTRA APENAS A BANDEIRA ATIVA */}
             <button 
               className="botao-idioma"
               aria-label="Alternar idioma"
@@ -81,10 +82,12 @@ const navegarPara = (id: string) => {
                   src={language === 'pt' ? bandeiraEUA : bandeiraBrasil} 
                   alt={language === 'pt' ? 'EUA' : 'Brasil'} 
                   className="bandeira-inativa" 
+                  style={{ display: 'none' }} // FORÇA ficar escondida
                 />
               </span>
             </button>
             
+            {/* Botão Tema - MOSTRA APENAS O ÍCONE ATIVO */}
             <button 
               className="botao-tema"
               aria-label="Alternar tema"

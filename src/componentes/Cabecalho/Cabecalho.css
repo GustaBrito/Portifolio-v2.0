@@ -118,8 +118,15 @@
   box-shadow: var(--sombra-colorida);
 }
 
-/* ===== BOTÃO DE IDIOMA ATUALIZADO ===== */
-.botao-idioma img {
+.bandeiras {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bandeira-ativa {
+  display: block;
   width: 20px;
   height: 15px;
   object-fit: cover;
@@ -127,40 +134,40 @@
   transition: var(--transicao-padrao);
 }
 
-.botao-idioma:hover img {
-  transform: scale(1.2);
-  filter: brightness(1.2);
-}
-
-/* Remove as animações antigas de flip */
-.bandeiras,
 .bandeira-inativa {
   display: none;
 }
 
-/* ===== BOTÃO DE TEMA ATUALIZADO ===== */
-.icone-sol, 
-.icone-lua {
+.botao-idioma:hover .bandeira-ativa {
+  transform: scale(1.2);
+  filter: brightness(1.2);
+}
+
+.icone-tema {
   font-size: 1.3rem;
   transition: var(--transicao-padrao);
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.botao-tema:hover .icone-sol {
-  transform: rotate(15deg) scale(1.2);
-}
-
-.botao-tema:hover .icone-lua {
-  transform: rotate(-15deg) scale(1.2);
-}
-
-/* Remove as animações antigas de tema */
-.icone-tema,
 .tema-ativo,
 .tema-inativo {
+  font-size: 1.3rem;
+  transition: var(--transicao-padrao);
+}
+
+.tema-ativo {
+  display: block;
+}
+
+.tema-inativo {
   display: none;
+}
+
+.botao-tema:hover .tema-ativo {
+  transform: scale(1.2);
 }
 
 .menu-toggle {
@@ -251,14 +258,9 @@
     font-size: 1.1rem;
   }
   
-  .botao-idioma img {
+  .bandeira-ativa {
     width: 18px;
     height: 13px;
-  }
-  
-  .icone-sol, 
-  .icone-lua {
-    font-size: 1.1rem;
   }
   
   .menu-toggle {
@@ -317,16 +319,6 @@
   .botao-tema {
     width: 32px;
     height: 32px;
-    font-size: 1rem;
-  }
-  
-  .botao-idioma img {
-    width: 16px;
-    height: 12px;
-  }
-  
-  .icone-sol, 
-  .icone-lua {
     font-size: 1rem;
   }
   
